@@ -1,8 +1,7 @@
 console.log("🟢 Connected!");
 
 const ranges = document.querySelectorAll(".range");
-//const URL = "https://swapi.dev/api/people/";
-const URL = "https://pokeapi.co/api/v2/pokemon/"; //RUTA ALTERNATIVA MIENTRAS VUELVE SWAPI.DEV
+const URL = "https://swapi.dev/api/people/";
 const template = document.querySelector("#characterCardTemplate");
 
 //SETS
@@ -35,7 +34,7 @@ const obtenerPersonaje = async (id) => {
 //EN ESTA VERSIÓN NO FUE NECESARIO, PERO DECIDÍ DEJAR EL CÓDIGO QUE GUARDABA LOS PERSONAJES EN SUS SETS DE IGUAL MANERA
 const agregarPersonaje = async (id, tipo, set) => {
   const data = await obtenerPersonaje(id);
-  const { name, height, weight: mass } = data; //CAMBIAR A MASS CUANDO VUELVA SWAPI.DEV
+  const { name, height, mass } = data;
   const nuevoPersonaje = new personaje(name, height, mass, tipo);
 
   set.add(nuevoPersonaje);
