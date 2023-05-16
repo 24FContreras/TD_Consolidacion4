@@ -66,8 +66,8 @@ const renderizarPersonaje = (personaje) => {
 };
 
 //GENERADOR BASE
-function* generarPersonajes(inicio, tipo, set) {
-  for (let i = inicio; i <= inicio + 4; i++) {
+function* generarPersonajes(inicio, fin, tipo, set) {
+  for (let i = inicio; i <= fin; i++) {
     yield agregarPersonaje(i, tipo, set);
   }
 
@@ -75,25 +75,41 @@ function* generarPersonajes(inicio, tipo, set) {
 }
 
 //INSTANCIAS DE GENERADOR
-const generadorPrincipales = generarPersonajes(1, "Principales", principales);
-const generadorSecundarios = generarPersonajes(6, "Secundarios", secundarios);
-const generadorOtros = generarPersonajes(12, "Otros", otros);
+const generadorPrincipales = generarPersonajes(
+  1,
+  5,
+  "Principales",
+  principales
+);
+const generadorSecundarios = generarPersonajes(
+  6,
+  11,
+  "Secundarios",
+  secundarios
+);
+const generadorOtros = generarPersonajes(12, 17, "Otros", otros);
 
 //EVENTO MOUSEENTER PARA CADA RANGO
 ranges.forEach((item) => {
+  let cuenta = 1;
   item.addEventListener("mouseenter", (e) => {
-    switch (e.target.dataset.generador) {
-      case "Principales":
-        generadorPrincipales.next();
-        break;
+    if (cuenta <= 5) {
+      switch (e.target.dataset.generador) {
+        case "Principales":
+          generadorPrincipales.next();
 
-      case "Secundarios":
-        generadorSecundarios.next();
-        break;
+          break;
 
-      case "Otros":
-        generadorOtros.next();
-        break;
-    }
+        case "Secundarios":
+          generadorSecundarios.next();
+          break;
+
+        case "Otros":
+          generadorOtros.next();
+          break;
+      }
+
+      cuenta++;
+    } else return false;
   });
 });
