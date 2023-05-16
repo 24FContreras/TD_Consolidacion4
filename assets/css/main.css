@@ -13,7 +13,6 @@ body {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  grid-auto-rows: 140px;
   gap: 1rem;
   padding: 3rem;
   border-left: solid 3px #eaeaea;
@@ -31,6 +30,10 @@ body {
   top: 50%;
   left: -1.5px;
   transform: translate(-50%, -50%);
+}
+
+.character-card {
+  height: fit-content;
 }
 
 .circle {
